@@ -4,6 +4,26 @@ import pandas as pd
 import requests
 import urllib.parse
 
+import gdown
+import os
+
+# Download files if not present
+if not os.path.exists("movie_dict.pkl"):
+    gdown.download("https://drive.google.com/file/d/11OGOHfYpmJxON6IMIojxEapayrkMAaFY/view?usp=drive_link", "movie_dict.pkl", quiet=False)
+
+if not os.path.exists("similarity.pkl"):
+    gdown.download("https://drive.google.com/file/d/1TMZpDHjFSgykveRDbJuu-FbYAWfX4ydk/view?usp=drive_link", "similarity.pkl", quiet=False)
+
+# Then load normally
+with open('movie_dict.pkl', 'rb') as f:
+    movies_dict = pickle.load(f)
+
+with open('similarity.pkl', 'rb') as f:
+    similarity = pickle.load(f)
+
+
+
+
 # API setup (optional, not currently used in your code)
 url = "https://api.themoviedb.org/3/movie/343611"
 headers = {
@@ -40,9 +60,9 @@ def get_movie_info(title):
         return "https://via.placeholder.com/300x450.png?text=Error"
 
 # Load model and data
-movies_dict = pickle.load(open('D:\\Data Analysis\\Machine Learning\\Movie recommender\\movie_dict.pkl', 'rb'))
+#movies_dict = pickle.load(open('D:\\Data Analysis\\Machine Learning\\Movie recommender\\movie_dict.pkl', 'rb'))
 movies = pd.DataFrame(movies_dict)
-similarity = pickle.load(open('D:\\Data Analysis\\Machine Learning\\Movie recommender\\similarity.pkl', 'rb'))
+#similarity = pickle.load(open('D:\\Data Analysis\\Machine Learning\\Movie recommender\\similarity.pkl', 'rb'))
 
 st.title('🎬 Movie Recommender System')
 
