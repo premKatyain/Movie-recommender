@@ -42,7 +42,7 @@ def get_movie_info(title):
 # Load model and data
 movies_dict = pickle.load(open('movie_dict.pkl', 'rb'))
 movies = pd.DataFrame(movies_dict)
-similarity = pickle.load(open('similarity.pkl', 'rb'))
+similarity = pickle.load(open('similarity_compressed.pkl', 'rb'))
 
 st.title('🎬 Movie Recommender System')
 
